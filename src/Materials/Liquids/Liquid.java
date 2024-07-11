@@ -1,18 +1,23 @@
 package Materials.Liquids;
 
+import Materials.Grid.Grid;
 import Materials.Material;
 
 
 import static Materials.MaterialTypes.LIQUID;
 
+//base class for liquids
+
 public class Liquid extends Material {
 
-
     public Liquid(int x,int y){
-        this.color=color(3, 169, 252);
-        this.x=x;
-        this.y=y;
+        super(x,y);
         this.type= LIQUID;
-        this.canFall=true;
+    }
+
+    @Override
+    public void update(Grid grid) {
+        super.update(grid);
+        this.fall(grid);
     }
 }

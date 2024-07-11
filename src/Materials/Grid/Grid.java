@@ -1,13 +1,16 @@
 package Materials.Grid;
 
-import Materials.Liquids.Liquid;
 import Materials.Material;
 import Materials.Empty;
 import processing.core.PApplet;
 
+/*
+    MaterialGrid
+*/
 public class Grid extends PApplet {
     private PApplet sketch;
 
+    //a 2d array of materials
     public Material[][] grid;
     public int size;
     public int pixelSize;
@@ -21,6 +24,7 @@ public class Grid extends PApplet {
         this.pixelSize=pixelSize;
         this.sketch=sketch;
 
+        //initialises the array with empty materials
         for(int x=0;x<size;x++){
             for(int y=0;y<size;y++){
                 grid[x][y]=new Empty(x,y);
@@ -32,29 +36,22 @@ public class Grid extends PApplet {
         grid[x][y]=element;
     }
 
-
+    //draws a square representing a pixel on the window
     public void drawPixel(int x,int y,int color){
-        /*
-        sketch.square(x*pixelSize,y*pixelSize,pixelSize+2,pixelSize+2);
         sketch.fill(color);
-        sketch.arc();
-         */
-        //sketch.rectMode(CORNER);
-        sketch.fill(color);
-        sketch.stroke(color);
-        sketch.rect((x)*pixelSize,(y)*pixelSize,5,5);
-        //sketch.set(x,y,color);
+        sketch.stroke(color); //gives the square an outline
+        sketch.rect((x)*pixelSize,(y)*pixelSize,pixelSize,pixelSize);//draws the square
+
     }
 
+    //draws a square for each material
     public void renderGrid(){
         for(int x=0;x<size;x++){
             for(int y=0;y<size;y++){
                 Material currentElement=grid[x][y];
                 drawPixel(x,y, currentElement.color);
                 currentElement.updated=false;
-                //System.out.print(x+" ");
             }
-           // System.out.println();
         }
     }
     public void updateGrid(){
