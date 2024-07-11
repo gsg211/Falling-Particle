@@ -1,8 +1,8 @@
-package Elements;
+package Materials;
 
-import static Elements.ElementTypes.EMPTY;
+import static Materials.MaterialTypes.EMPTY;
 
-public class Empty extends  Element{
+public class Empty extends Material {
     public Empty(int x,int y){
         this.color=color(0);
         this.x=x;
