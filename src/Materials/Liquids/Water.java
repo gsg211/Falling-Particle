@@ -9,6 +9,6 @@ public class Water extends Liquid{
         super(x,y);
         this.type=WATER;
         this.color=color(3, 177, 252);
-        this.dispersal=2;
+        this.dispersal=1;
     }
 }

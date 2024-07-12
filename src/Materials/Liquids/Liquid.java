@@ -16,9 +16,9 @@ public class Liquid extends Material {
     }
 
     public void disperseRight(Grid grid){
-            if (grid.grid[this.x + 1][this.y].type==EMPTY){
-                moveRight(grid);
-            }
+        if (grid.grid[this.x + 1][this.y].type==EMPTY){
+            moveRight(grid);
+        }
     }
 
     public void disperseLeft(Grid grid){
@@ -31,25 +31,30 @@ public class Liquid extends Material {
         if(this.y==grid.size-1 || this.x==0 || this.x == grid.size-1){
             return;
         }
-        //if (grid.grid[this.x][this.y + 1].type == EMPTY) {
-         //   return;
-        //}
+        if (grid.grid[this.x][this.y + 1].type == EMPTY) {
+            return;
+        }
         if(timeToDisperse!=0){
             timeToDisperse--;
             return;
         }
-        if (grid.grid[this.x][this.y + 1].type != EMPTY) {
             timeToDisperse=dispersal;
-            //if both left and right are free move right
             if (grid.grid[this.x + 1][this.y].type == EMPTY &&
                     grid.grid[this.x - 1][this.y].type == EMPTY) {
+                //disperseRight(grid);
+                if ((Math.random() > 0.5)) {
+                    disperseRight(grid);
+                } else {
+                    disperseLeft(grid);
+                }
+            }
+            else if (grid.grid[this.x + 1][this.y].type == EMPTY) {
                 disperseRight(grid);
-            } else if (grid.grid[this.x + 1][this.y].type == EMPTY) {
-                disperseRight(grid);
-            } else if (grid.grid[this.x - 1][this.y].type == EMPTY) {
+            }
+            else if (grid.grid[this.x - 1][this.y].type == EMPTY) {
+
                 disperseLeft(grid);
             }
-        }
     }
 
     @Override
