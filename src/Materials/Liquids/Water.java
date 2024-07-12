@@ -10,5 +10,6 @@ public class Water extends Liquid{
         this.type=WATER;
         this.color=color(3, 177, 252);
         this.dispersal=1;
+        this.density=1000;
     }
 }

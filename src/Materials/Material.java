@@ -13,6 +13,7 @@ public class Material extends PApplet{
     public int color;
     public int x,y;
     public MaterialTypes type;
+    public int density;
 
     public Boolean updated=false;
     public Material(){
@@ -47,17 +48,17 @@ public class Material extends PApplet{
             return;
         }
         //checks down neighbour
-        if (grid.grid[this.x][this.y + 1].type == EMPTY ) {
+        if (grid.grid[this.x][this.y + 1].density < density ) {
             this.swap(grid, grid.grid[this.x][this.y + 1]);
             return;
         }
         //checks down-right neighbour
-        if (this.x < grid.size - 1 && grid.grid[this.x + 1][this.y + 1].type == EMPTY) {
+        if (this.x < grid.size - 1 && grid.grid[this.x + 1][this.y + 1].density < density) {
             this.swap(grid, grid.grid[this.x + 1][this.y + 1]);
             return;
         }
         //checks down-left neighbour
-        if (this.x > 0 && grid.grid[this.x - 1][this.y + 1].type == EMPTY ) {
+        if (this.x > 0 && grid.grid[this.x - 1][this.y + 1].density < density) {
             this.swap(grid, grid.grid[this.x - 1][this.y + 1]);
         }
     }

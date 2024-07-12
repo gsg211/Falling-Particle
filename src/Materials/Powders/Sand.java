@@ -10,6 +10,7 @@ public class Sand extends Powder {
         super(x,y);
         this.color=color(239, 245, 66);
         this.type=SAND;
+        this.density=1602;
     }
 
     @Override

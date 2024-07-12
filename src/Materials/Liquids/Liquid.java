@@ -38,23 +38,23 @@ public class Liquid extends Material {
             timeToDisperse--;
             return;
         }
-            timeToDisperse=dispersal;
-            if (grid.grid[this.x + 1][this.y].type == EMPTY &&
-                    grid.grid[this.x - 1][this.y].type == EMPTY) {
-                //disperseRight(grid);
-                if ((Math.random() > 0.5)) {
-                    disperseRight(grid);
-                } else {
-                    disperseLeft(grid);
-                }
-            }
-            else if (grid.grid[this.x + 1][this.y].type == EMPTY) {
+        timeToDisperse=dispersal;
+        if (grid.grid[this.x + 1][this.y].type == EMPTY &&
+                grid.grid[this.x - 1][this.y].type == EMPTY) {
+            //disperseRight(grid);
+            if ((Math.random() > 0.5)) {
                 disperseRight(grid);
-            }
-            else if (grid.grid[this.x - 1][this.y].type == EMPTY) {
-
+            } else {
                 disperseLeft(grid);
             }
+        }
+        else if (grid.grid[this.x + 1][this.y].type == EMPTY) {
+            disperseRight(grid);
+        }
+        else if (grid.grid[this.x - 1][this.y].type == EMPTY) {
+
+            disperseLeft(grid);
+        }
     }
 
     @Override

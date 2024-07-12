@@ -13,6 +13,8 @@ public class Main extends PApplet{
     int scrollValue=0;
     int lastMaterial =1;
 
+    Material paintingMaterial;
+
     Grid MaterialGrid =new Grid(this,matrixSize,pixelSize);
 
     public void settings() {
@@ -37,10 +39,8 @@ public class Main extends PApplet{
         if(y<0 || y>matrixSize-1){
             return;
         }
-
-        Material paintingMaterial=selectPaintingMaterial(x,y);
+        paintingMaterial=selectPaintingMaterial(x,y);
         MaterialGrid.setElement(x,y,paintingMaterial);
-
     }
     public void mouseDragged(){
         paintMaterial();
@@ -49,19 +49,19 @@ public class Main extends PApplet{
     public void mousePressed(){
         paintMaterial();
     }
-    public Material selectPaintingMaterial(int x, int y){
+    public Material selectPaintingMaterial(int x,int y){
         return switch (scrollValue) {
             case -1 -> {
                 //returns the last material
                 scrollValue = lastMaterial;
-                yield selectPaintingMaterial(x, y);
+                yield selectPaintingMaterial(x,y);
             }
             case 0 -> new Sand(x, y);
             case 1 -> new Water(x, y);
             default -> {
                 //if scrollValue too big, material is reset
                 scrollValue = 0;
-                yield selectPaintingMaterial(x, y);
+                yield selectPaintingMaterial(x,y);
             }
         };
     }
@@ -73,9 +73,7 @@ public class Main extends PApplet{
 
         //subtraction so that forward increments;
         scrollValue-=readScrollValue;
-        println(scrollValue);
     }
-
     public static void main(String[] args) {
         String[] processingArgs = {"mySketch"};
         Main mySketch = new Main();
