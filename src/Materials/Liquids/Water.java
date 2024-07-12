@@ -9,12 +9,6 @@ public class Water extends Liquid{
         super(x,y);
         this.type=WATER;
         this.color=color(3, 177, 252);
-    }
-    @Override
-    public void update(Grid grid) {
-        if(updated){
-            return;
-        }
-        fall(grid);
+        this.dispersal=2;
     }
 }

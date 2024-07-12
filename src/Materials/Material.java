@@ -62,13 +62,25 @@ public class Material extends PApplet{
         }
     }
 
+    public void moveRight(Grid grid){
+        if (this.x<grid.size-1){
+            this.swap(grid, grid.grid[this.x + 1][this.y]);
+        }
+    }
+
+    public void moveLeft(Grid grid){
+        if (this.x>0) {
+            this.swap(grid, grid.grid[this.x - 1][this.y]);
+        }
+    }
+
     public void update(Grid grid){
         //stops materials from updating twice per update cycle
         if(updated){
             return;
         }
         fall(grid);
-
+        //disperseRight(grid);
     }
 
 

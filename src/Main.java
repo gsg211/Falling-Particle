@@ -24,8 +24,9 @@ public class Main extends PApplet{
         MaterialGrid.updateGrid();
     }
 
-    public void mouseDragged(){
+    public void paintMaterial(){
         //converts cursor position to array position
+
         int x=mouseX/pixelSize;
         int y=mouseY/pixelSize;
 
@@ -39,6 +40,14 @@ public class Main extends PApplet{
 
         Material paintingMaterial=selectPaintingMaterial(x,y);
         MaterialGrid.setElement(x,y,paintingMaterial);
+
+    }
+    public void mouseDragged(){
+        paintMaterial();
+    }
+
+    public void mousePressed(){
+        paintMaterial();
     }
     public Material selectPaintingMaterial(int x, int y){
         return switch (scrollValue) {
@@ -61,6 +70,7 @@ public class Main extends PApplet{
     public void mouseWheel(MouseEvent event) {
         super.mouseWheel(event);
         int readScrollValue = event.getCount();
+
         //subtraction so that forward increments;
         scrollValue-=readScrollValue;
         println(scrollValue);
