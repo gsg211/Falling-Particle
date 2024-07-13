@@ -59,7 +59,7 @@ public class Material extends PApplet{
         }
         //checks down-left neighbour
         if (this.x > 0 && grid.grid[this.x - 1][this.y + 1].density < density
-                && grid.grid[this.x + 1][this.y].density < density) {
+                && grid.grid[this.x - 1][this.y].density < density) {
                     this.swap(grid, grid.grid[this.x - 1][this.y + 1]);
         }
     }
