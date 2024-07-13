@@ -32,7 +32,7 @@ public class MaterialGrid extends PApplet {
         }
     }
 
-    public void setElement(int x, int y, Material element){
+    public void setMaterial(int x, int y, Material element){
         grid[x][y]=element;
     }
 

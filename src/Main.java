@@ -2,6 +2,8 @@ import Materials.Grid.MaterialGrid;
 import Materials.*;
 import Materials.Liquids.Water;
 import Materials.Powders.Sand;
+import Materials.Solids.Solid;
+import Materials.Solids.Wood;
 import processing.core.PApplet;
 import processing.event.MouseEvent;
 
@@ -10,7 +12,7 @@ public class Main extends PApplet{
     int matrixSize=100;
     int pixelSize=5; //each "Material pixel" is a 5x5 square of pixels
     int scrollValue=0;
-    int lastMaterial =1;
+    int lastMaterial =2;
 
     Material paintingMaterial;
 
@@ -39,7 +41,7 @@ public class Main extends PApplet{
             return;
         }
         paintingMaterial=selectPaintingMaterial(x,y);
-        MaterialGrid.setElement(x,y,paintingMaterial);
+        MaterialGrid.setMaterial(x,y,paintingMaterial);
     }
     public void mouseDragged(){
         paintMaterial();
@@ -57,6 +59,7 @@ public class Main extends PApplet{
             }
             case 0 -> new Sand(x, y);
             case 1 -> new Water(x, y);
+            case 2 -> new Wood(x, y);
             default -> {
                 //if scrollValue too big, material is reset
                 scrollValue = 0;

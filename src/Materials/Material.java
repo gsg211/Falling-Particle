@@ -1,11 +1,7 @@
 package Materials;
 
-import Materials.Liquids.Water;
-import Materials.Powders.WetSand;
 import processing.core.PApplet;
 import Materials.Grid.MaterialGrid;
-
-import static Materials.MaterialTypes.WATER;
 
 /*
     Base class for the materials
@@ -16,6 +12,7 @@ public class Material extends PApplet{
     public int x,y;
     public MaterialTypes type;
     public int density;
+
 
     public Boolean updated=false;
     public Material(){
@@ -55,13 +52,15 @@ public class Material extends PApplet{
             return;
         }
         //checks down-right neighbour
-        if (this.x < grid.size - 1 && grid.grid[this.x + 1][this.y + 1].density < density) {
-            this.swap(grid, grid.grid[this.x + 1][this.y + 1]);
+        if (this.x < grid.size - 1 && grid.grid[this.x + 1][this.y + 1].density < density
+                && grid.grid[this.x + 1][this.y].density < density) {
+                    this.swap(grid, grid.grid[this.x + 1][this.y + 1]);
             return;
         }
         //checks down-left neighbour
-        if (this.x > 0 && grid.grid[this.x - 1][this.y + 1].density < density) {
-            this.swap(grid, grid.grid[this.x - 1][this.y + 1]);
+        if (this.x > 0 && grid.grid[this.x - 1][this.y + 1].density < density
+                && grid.grid[this.x + 1][this.y].density < density) {
+                    this.swap(grid, grid.grid[this.x - 1][this.y + 1]);
         }
     }
 
@@ -82,8 +81,6 @@ public class Material extends PApplet{
         if(updated){
             return;
         }
-        fall(grid);
-        //disperseRight(grid);
     }
 
     public void replaceMaterial(MaterialGrid grid, Material newMaterial){
@@ -92,7 +89,7 @@ public class Material extends PApplet{
 
         newMaterial.x=x;
         newMaterial.y=y;
-        grid.setElement(x,y,newMaterial);
+        grid.setMaterial(x,y,newMaterial);
     }
 
     public Material checkForMaterial(MaterialGrid grid, Material material){

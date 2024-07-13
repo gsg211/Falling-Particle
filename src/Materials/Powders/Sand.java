@@ -19,7 +19,6 @@ public class Sand extends Powder {
         Material water=new Water(x,y);
         Material wetSand=new WetSand(x,y);
         reactWithMaterial(grid,new Water(x,y),new WetSand(x,y),new Empty(0,0));
-
     }
 
     @Override
