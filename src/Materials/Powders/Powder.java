@@ -1,6 +1,6 @@
 package Materials.Powders;
 
-import Materials.Grid.Grid;
+import Materials.Grid.MaterialGrid;
 import Materials.Material;
 
 import static Materials.MaterialTypes.POWDER;
@@ -13,7 +13,7 @@ public class Powder extends Material {
         this.type= POWDER;
     }
     @Override
-    public void update(Grid grid) {
+    public void update(MaterialGrid grid) {
         super.update(grid);
         this.fall(grid);
     }

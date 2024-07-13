@@ -1,9 +1,11 @@
 package Materials;
 
+import Materials.Liquids.Water;
+import Materials.Powders.WetSand;
 import processing.core.PApplet;
-import Materials.Grid.Grid;
+import Materials.Grid.MaterialGrid;
 
-import static Materials.MaterialTypes.EMPTY;
+import static Materials.MaterialTypes.WATER;
 
 /*
     Base class for the materials
@@ -25,7 +27,7 @@ public class Material extends PApplet{
     }
 
     //used to swap to materials within the grid
-    public void swap(Grid grid, Material elementToSwap){
+    public void swap(MaterialGrid grid, Material elementToSwap){
         int x1,x2,y1,y2;
 
         x1=this.x;
@@ -43,7 +45,7 @@ public class Material extends PApplet{
     }
 
     //makes a material fall to the bottom of the grid
-    public void fall(Grid grid) {
+    public void fall(MaterialGrid grid) {
         if (this.y == grid.size - 1) {
             return;
         }
@@ -63,19 +65,19 @@ public class Material extends PApplet{
         }
     }
 
-    public void moveRight(Grid grid){
+    public void moveRight(MaterialGrid grid){
         if (this.x<grid.size-1){
             this.swap(grid, grid.grid[this.x + 1][this.y]);
         }
     }
 
-    public void moveLeft(Grid grid){
+    public void moveLeft(MaterialGrid grid){
         if (this.x>0) {
             this.swap(grid, grid.grid[this.x - 1][this.y]);
         }
     }
 
-    public void update(Grid grid){
+    public void update(MaterialGrid grid){
         //stops materials from updating twice per update cycle
         if(updated){
             return;
@@ -84,5 +86,65 @@ public class Material extends PApplet{
         //disperseRight(grid);
     }
 
+    public void replaceMaterial(MaterialGrid grid, Material newMaterial){
+        //replaces this material with another
+        //used in reactions
 
+        newMaterial.x=x;
+        newMaterial.y=y;
+        grid.setElement(x,y,newMaterial);
+    }
+
+    public Material checkForMaterial(MaterialGrid grid, Material material){
+        //checks all neighbouring cells for a material
+        //this method is used for reactions
+
+        //upper cell
+        int size=grid.size;
+        if(y<size-2 && grid.grid[x][y+1].type==material.type){
+            return grid.grid[x][y+1];
+        }
+        //down cell
+        if(y>1 && grid.grid[x][y-1].type==material.type){
+            return grid.grid[x][y-1];
+        }
+        //right cell
+        if(x<size-2 && grid.grid[x+1][y].type==material.type){
+            return grid.grid[x+1][y];
+        }
+        //left cell
+        if(x>1 && grid.grid[x-1][y].type==material.type){
+            return grid.grid[x-1][y];
+        }
+        //upper-right cell
+        if(x<size-2 && y<size-2 && grid.grid[x+1][y+1].type==material.type){
+            return grid.grid[x+1][y+1];
+        }
+        //upper-left
+        if(x>1 && y<size-2 && grid.grid[x-1][y+1].type==material.type){
+            return grid.grid[x-1][y+1];
+        }
+        //down-right cell
+        if(x<size-2 && y>1 && grid.grid[x+1][y-1].type==material.type){
+            return grid.grid[x+1][y-1];
+        }
+        //down-left cell
+        if(x>1 && y>1 && grid.grid[x-1][y-1].type==material.type){
+            return grid.grid[x-1][y-1];
+        }
+        return new Empty(0,0);
+    }
+
+    public void reactWithMaterial(MaterialGrid grid,Material reactant, Material product, Material reactantProduct) {
+        //reactant is the other material needed for the reaction
+        //product is the material that this material is replaced by
+        //reactant product is the material that the reactant is replaced by
+
+        Material result = checkForMaterial(grid, reactant);
+        //println(result.type+": "+(x-result.x) + " "+ (y-result.y) );
+        if (result.type == reactant.type) {
+            replaceMaterial(grid, product);
+            result.replaceMaterial(grid,reactantProduct);
+        }
+    }
 }

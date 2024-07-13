@@ -1,9 +1,11 @@
 package Materials.Powders;
 
-import Materials.Grid.Grid;
+import Materials.Empty;
+import Materials.Grid.MaterialGrid;
+import Materials.Liquids.Water;
+import Materials.Material;
 
-import static Materials.MaterialTypes.LIQUID;
-import static Materials.MaterialTypes.SAND;
+import static Materials.MaterialTypes.*;
 
 public class Sand extends Powder {
     public Sand(int x,int y){
@@ -13,11 +15,19 @@ public class Sand extends Powder {
         this.density=1602;
     }
 
+    public void reactWithWater(MaterialGrid grid){
+        Material water=new Water(x,y);
+        Material wetSand=new WetSand(x,y);
+        reactWithMaterial(grid,new Water(x,y),new WetSand(x,y),new Empty(0,0));
+
+    }
+
     @Override
-    public void update(Grid grid) {
+    public void update(MaterialGrid grid) {
         if(updated){
             return;
         }
         fall(grid);
+        reactWithWater(grid);
     }
 }

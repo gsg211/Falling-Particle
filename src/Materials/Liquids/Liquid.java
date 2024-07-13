@@ -1,6 +1,6 @@
 package Materials.Liquids;
 
-import Materials.Grid.Grid;
+import Materials.Grid.MaterialGrid;
 import Materials.Material;
 
 import static Materials.MaterialTypes.*;
@@ -15,19 +15,19 @@ public class Liquid extends Material {
         this.type= LIQUID;
     }
 
-    public void disperseRight(Grid grid){
+    public void disperseRight(MaterialGrid grid){
         if (grid.grid[this.x + 1][this.y].type==EMPTY){
             moveRight(grid);
         }
     }
 
-    public void disperseLeft(Grid grid){
+    public void disperseLeft(MaterialGrid grid){
         if (grid.grid[this.x - 1][this.y].type==EMPTY) {
             moveLeft(grid);
         }
     }
 
-    public void disperse(Grid grid){
+    public void disperse(MaterialGrid grid){
         if(this.y==grid.size-1 || this.x==0 || this.x == grid.size-1){
             return;
         }
@@ -58,7 +58,7 @@ public class Liquid extends Material {
     }
 
     @Override
-    public void update(Grid grid) {
+    public void update(MaterialGrid grid) {
         if(updated){
             return;
         }

@@ -1,7 +1,5 @@
 package Materials.Liquids;
 
-import Materials.Grid.Grid;
-
 import static Materials.MaterialTypes.WATER;
 
 public class Water extends Liquid{

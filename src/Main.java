@@ -1,6 +1,5 @@
-import Materials.Grid.Grid;
+import Materials.Grid.MaterialGrid;
 import Materials.*;
-import Materials.Liquids.Liquid;
 import Materials.Liquids.Water;
 import Materials.Powders.Sand;
 import processing.core.PApplet;
@@ -15,7 +14,7 @@ public class Main extends PApplet{
 
     Material paintingMaterial;
 
-    Grid MaterialGrid =new Grid(this,matrixSize,pixelSize);
+    Materials.Grid.MaterialGrid MaterialGrid =new MaterialGrid(this,matrixSize,pixelSize);
 
     public void settings() {
         size(500, 500);

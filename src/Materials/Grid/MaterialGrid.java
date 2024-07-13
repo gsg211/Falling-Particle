@@ -7,7 +7,7 @@ import processing.core.PApplet;
 /*
     MaterialGrid
 */
-public class Grid extends PApplet {
+public class MaterialGrid extends PApplet {
     private PApplet sketch;
 
     //a 2d array of materials
@@ -15,10 +15,10 @@ public class Grid extends PApplet {
     public int size;
     public int pixelSize;
 
-    public Grid(){
+    public MaterialGrid(){
     }
 
-    public Grid(PApplet sketch,int size, int pixelSize){
+    public MaterialGrid(PApplet sketch, int size, int pixelSize){
         this.grid =new Material[size][size];
         this.size=size;
         this.pixelSize=pixelSize;
