@@ -3,15 +3,14 @@ package Materials.Gasses;
 import Materials.Grid.MaterialGrid;
 import Materials.Material;
 
-import static Materials.MaterialTypes.EMPTY;
-import static Materials.MaterialTypes.LIQUID;
+import static Materials.MaterialTypes.*;
 
 public class Gas extends Material {
     int dispersal=2;
     int timeToDisperse=0;
     public Gas(int x,int y){
         super(x,y);
-        this.type= LIQUID;
+        this.type= GAS;
     }
 
     public void floatUp(MaterialGrid grid) {

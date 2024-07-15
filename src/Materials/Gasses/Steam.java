@@ -1,5 +1,9 @@
 package Materials.Gasses;
 
+import Materials.MaterialTypes;
+
+import static Materials.MaterialTypes.STEAM;
+
 public class Steam extends Gas{
     public Steam (int x,int y){
         super(x,y);
@@ -7,5 +11,6 @@ public class Steam extends Gas{
         this.dispersal=1;
         this.density=-1000;
         this.lifetime=1000;
+        this.type= STEAM;
     }
 }

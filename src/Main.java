@@ -14,6 +14,7 @@ public class Main extends PApplet{
     int scrollValue=0;
     int lastMaterial =3;
 
+    Material printMaterial=new Sand(0,0);
     Material paintingMaterial;
 
     Materials.Grid.MaterialGrid MaterialGrid =new MaterialGrid(this,matrixSize,pixelSize);
@@ -76,7 +77,8 @@ public class Main extends PApplet{
 
         //subtraction so that forward increments;
         scrollValue-=readScrollValue;
-        println(scrollValue);
+        printMaterial=selectPaintingMaterial(0,0);
+        println(printMaterial.type);
     }
     public static void main(String[] args) {
         String[] processingArgs = {"mySketch"};
