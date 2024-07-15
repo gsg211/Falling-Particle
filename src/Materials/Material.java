@@ -1,5 +1,7 @@
 package Materials;
 
+import Materials.Energy.Fire;
+import Materials.Solids.BurningMaterial;
 import processing.core.PApplet;
 import Materials.Grid.MaterialGrid;
 
@@ -15,7 +17,7 @@ public class Material extends PApplet{
     public int density;
     public int color;
     public int lifetime=1000;
-
+    public int burnDelay=500;
     public Boolean updated=false;
     public Material(){
     }
@@ -153,4 +155,25 @@ public class Material extends PApplet{
             replaceMaterial(grid,new Empty(0,0));
         }
     }
+
+    //To do : Modify
+    public boolean isBurning(MaterialGrid grid){
+        if(checkForMaterial(grid,new Fire(0,0)).type!=MaterialTypes.EMPTY){
+            return true;
+        }
+        return false;
+    }
+
+    public void burn(MaterialGrid grid){
+        if(!isBurning(grid)){
+            return;
+        }
+        if(burnDelay>0){
+            burnDelay--;
+            return;
+        }
+
+        reactWithMaterial(grid,new Fire(0,0),new BurningMaterial(0,0),new BurningMaterial(0,0));
+    }
+
 }

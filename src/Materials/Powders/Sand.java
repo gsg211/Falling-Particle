@@ -16,8 +16,6 @@ public class Sand extends Powder {
     }
 
     public void reactWithWater(MaterialGrid grid){
-        Material water=new Water(x,y);
-        Material wetSand=new WetSand(x,y);
         reactWithMaterial(grid,new Water(x,y),new WetSand(x,y),new Empty(0,0));
     }
 

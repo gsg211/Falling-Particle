@@ -1,23 +1,24 @@
+import Materials.Energy.Fire;
 import Materials.Gasses.Steam;
 import Materials.Grid.MaterialGrid;
 import Materials.*;
 import Materials.Liquids.Water;
+import Materials.Powders.Ash;
 import Materials.Powders.Sand;
+import Materials.Powders.WetSand;
 import Materials.Solids.Wood;
 import processing.core.PApplet;
-import processing.core.PFont;
 import processing.event.MouseEvent;
 
 public class Main extends PApplet{
-    int x,y;
-    int matrixSize=100;
+    int gridSize =100;
     int pixelSize=5; //each "Material pixel" is a 5x5 square of pixels
     int scrollValue=0;
-    int lastMaterial =3;
+    int lastMaterial =5;
 
     Material printMaterial=new Sand(0,0);
     Material paintingMaterial;
-    MaterialGrid grid =new MaterialGrid(this,matrixSize,pixelSize);
+    MaterialGrid grid =new MaterialGrid(this, gridSize,pixelSize);
 
     String currentMaterialString="SAND";
     String cursorMaterialString="EMPTY";
@@ -47,10 +48,10 @@ public class Main extends PApplet{
         int y=mouseY/pixelSize;
 
         //avoid out of bounds exception
-            if(x<0 || x>matrixSize-1){
+            if(x<0 || x> gridSize -1){
             return;
         }
-        if(y<0 || y>matrixSize-1) {
+        if(y<0 || y> gridSize -1) {
             return;
         }
         cursorMaterialString=grid.grid[x][y].type.toString();
@@ -63,10 +64,10 @@ public class Main extends PApplet{
         int y=mouseY/pixelSize;
 
         //avoid out of bounds exception
-        if(x<0 || x>matrixSize-1){
+        if(x<0 || x> gridSize -1){
             return;
         }
-        if(y<0 || y>matrixSize-1){
+        if(y<0 || y> gridSize -1){
             return;
         }
         paintingMaterial=selectPaintingMaterial(x,y);
@@ -91,6 +92,8 @@ public class Main extends PApplet{
             case 1 -> new Water(x, y);
             case 2 -> new Wood(x, y);
             case 3 -> new Steam(x, y);
+            case 4 -> new Fire(x,y);
+            case 5 -> new WetSand(x,y);
             default -> {
                 //if scrollValue too big, material is reset
                 scrollValue = 0;

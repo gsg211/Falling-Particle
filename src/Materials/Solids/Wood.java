@@ -10,10 +10,12 @@ public class Wood extends Solid {
         super(x,y);
         this.color=(Math.random() < 0.8)? color(128, 85, 0): color(102, 68, 0);
         this.type=WOOD;
+        this.burnDelay=5;
     }
 
     @Override
     public void update(MaterialGrid grid) {
         super.update(grid);
+        super.burn(grid);
     }
 }
