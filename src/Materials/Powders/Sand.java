@@ -10,7 +10,7 @@ import static Materials.MaterialTypes.*;
 public class Sand extends Powder {
     public Sand(int x,int y){
         super(x,y);
-        this.color=(Math.random() < 0.8)? color(239, 245, 66): color(212, 219, 10);
+        this.color=(Math.random() < 0.8)? color(227,219,176): color(209, 186, 138);
         this.type=SAND;
         this.density=1602;
     }

@@ -8,7 +8,7 @@ import static Materials.MaterialTypes.WETSAND;
 public class WetSand extends Sand{
     public WetSand(int x,int y){
         super(x,y);
-        this.color=(Math.random() < 0.8)? color(211, 218, 11): color(164, 170, 9);
+        this.color=(Math.random() < 0.8)? color(198, 169, 108): color(192, 160, 95);
         this.type=WETSAND;
     }
 

@@ -8,11 +8,13 @@ import Materials.Grid.MaterialGrid;
 */
 
 public class Material extends PApplet{
-    public int color;
+
     public int x,y;
     public MaterialTypes type;
-    public int density;
 
+    public int density;
+    public int color;
+    public int lifetime=1000;
 
     public Boolean updated=false;
     public Material(){
@@ -142,6 +144,13 @@ public class Material extends PApplet{
         if (result.type == reactant.type) {
             replaceMaterial(grid, product);
             result.replaceMaterial(grid,reactantProduct);
+        }
+    }
+
+    public void expire(MaterialGrid grid){
+        lifetime--;
+        if(lifetime==0){
+            replaceMaterial(grid,new Empty(0,0));
         }
     }
 }
