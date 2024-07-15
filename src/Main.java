@@ -5,6 +5,7 @@ import Materials.Liquids.Water;
 import Materials.Powders.Sand;
 import Materials.Solids.Wood;
 import processing.core.PApplet;
+import processing.core.PFont;
 import processing.event.MouseEvent;
 
 public class Main extends PApplet{
@@ -16,21 +17,48 @@ public class Main extends PApplet{
 
     Material printMaterial=new Sand(0,0);
     Material paintingMaterial;
+    MaterialGrid grid =new MaterialGrid(this,matrixSize,pixelSize);
 
-    Materials.Grid.MaterialGrid MaterialGrid =new MaterialGrid(this,matrixSize,pixelSize);
-
+    String currentMaterialString="SAND";
+    String cursorMaterialString="EMPTY";
     public void settings() {
-        size(500, 500);
+        size(500, 525);
     }
 
     public void draw() {
-        MaterialGrid.renderGrid();
-        MaterialGrid.updateGrid();
+
+        background(color(0));
+
+        grid.renderGrid();
+        grid.updateGrid();
+
+        textSize(20);
+        fill(color(255));
+        text(currentMaterialString,0,520);
+
+        checkMaterial();
+        textSize(20);
+        fill(color(255));
+        text(cursorMaterialString,400,520);
+
+    }
+    public void checkMaterial(){
+        int x=mouseX/pixelSize;
+        int y=mouseY/pixelSize;
+
+        //avoid out of bounds exception
+            if(x<0 || x>matrixSize-1){
+            return;
+        }
+        if(y<0 || y>matrixSize-1) {
+            return;
+        }
+        cursorMaterialString=grid.grid[x][y].type.toString();
+
     }
 
     public void paintMaterial(){
         //converts cursor position to array position
-
         int x=mouseX/pixelSize;
         int y=mouseY/pixelSize;
 
@@ -42,7 +70,7 @@ public class Main extends PApplet{
             return;
         }
         paintingMaterial=selectPaintingMaterial(x,y);
-        MaterialGrid.setMaterial(x,y,paintingMaterial);
+        grid.setMaterial(x,y,paintingMaterial);
     }
     public void mouseDragged(){
         paintMaterial();
@@ -51,6 +79,7 @@ public class Main extends PApplet{
     public void mousePressed(){
         paintMaterial();
     }
+
     public Material selectPaintingMaterial(int x,int y){
         return switch (scrollValue) {
             case -1 -> {
@@ -78,8 +107,9 @@ public class Main extends PApplet{
         //subtraction so that forward increments;
         scrollValue-=readScrollValue;
         printMaterial=selectPaintingMaterial(0,0);
-        println(printMaterial.type);
+        currentMaterialString=printMaterial.type.toString();
     }
+
     public static void main(String[] args) {
         String[] processingArgs = {"mySketch"};
         Main mySketch = new Main();
