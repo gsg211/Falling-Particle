@@ -13,7 +13,7 @@ public class Material extends PApplet{
 
     public int x,y;
     public MaterialTypes type;
-
+    public MaterialStates state;
     public int density;
     public int color;
     public int lifetime=1000;

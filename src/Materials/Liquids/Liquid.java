@@ -2,6 +2,7 @@ package Materials.Liquids;
 
 import Materials.Grid.MaterialGrid;
 import Materials.Material;
+import Materials.MaterialStates;
 
 import static Materials.MaterialTypes.*;
 
@@ -13,6 +14,7 @@ public class Liquid extends Material {
     public Liquid(int x,int y){
         super(x,y);
         this.type= LIQUID;
+        this.state= MaterialStates.FLUID;
     }
 
     public void disperseRight(MaterialGrid grid){

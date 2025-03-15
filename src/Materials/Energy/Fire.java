@@ -5,6 +5,7 @@ import Materials.Gasses.Steam;
 import Materials.Grid.MaterialGrid;
 import Materials.Liquids.Water;
 import Materials.Material;
+import Materials.MaterialStates;
 
 import static Materials.MaterialTypes.FIRE;
 import static Materials.MaterialTypes.WATER;
@@ -16,6 +17,7 @@ public class Fire extends Material {
         this.type=FIRE;
         this.density=1001;
         this.lifetime=500;
+        this.state= MaterialStates.OTHER;
     }
 
     public void fall(MaterialGrid grid) {

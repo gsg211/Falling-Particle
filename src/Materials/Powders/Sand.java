@@ -11,7 +11,7 @@ public class Sand extends Powder {
     public Sand(int x,int y){
         super(x,y);
         this.color=(Math.random() < 0.8)? color(227,219,176): color(209, 186, 138);
-        this.type=SAND;
+        type=SAND;
         this.density=1602;
     }
 

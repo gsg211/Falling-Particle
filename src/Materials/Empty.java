@@ -7,7 +7,8 @@ public class Empty extends Material {
 
         super(x,y);
         this.color=color(0);
-        this.type=EMPTY;
+        type=EMPTY;
         this.density=Integer.MIN_VALUE;
+        this.state=MaterialStates.EMPTY;
     }
 }

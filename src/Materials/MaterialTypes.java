@@ -8,3 +8,4 @@ public enum MaterialTypes {
     EMPTY,LIQUID,SAND,POWDER,WATER,WETSAND,SOLID,WOOD,GAS,STEAM,FIRE,
     ASH,
 }
+

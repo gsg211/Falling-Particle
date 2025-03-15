@@ -1,7 +1,10 @@
 package Materials.Solids;
 
 import Materials.Empty;
+import Materials.Gasses.Steam;
 import Materials.Grid.MaterialGrid;
+import Materials.Liquids.Water;
+import Materials.Material;
 import Materials.Powders.Ash;
 import Materials.Powders.Sand;
 
@@ -12,7 +15,7 @@ public class BurningMaterial extends Solid{
     public BurningMaterial(int x, int y){
         super(x,y);
         this.color=(Math.random() < 0.8)? color(255, 51, 0): color(255, 153, 51);
-        this.type=FIRE;
+        type=FIRE;
         this.lifetime=250;
     }
 
@@ -28,10 +31,16 @@ public class BurningMaterial extends Solid{
         }
     }
 
+    public void reactWithWater(MaterialGrid grid){
+        reactWithMaterial(grid,new Water(0,0),new Steam(0,0),new Wood(0,0));
+    }
+
     @Override
     public void update(MaterialGrid grid) {
         super.update(grid);
         changeColor();
+        reactWithWater(grid);
         expire(grid);
+
     }
 }

@@ -2,6 +2,7 @@ package Materials.Gasses;
 
 import Materials.Grid.MaterialGrid;
 import Materials.Material;
+import Materials.MaterialStates;
 
 import static Materials.MaterialTypes.*;
 
@@ -11,6 +12,7 @@ public class Gas extends Material {
     public Gas(int x,int y){
         super(x,y);
         this.type= GAS;
+        this.state= MaterialStates.FLUID;
     }
 
     public void floatUp(MaterialGrid grid) {
