@@ -4,10 +4,9 @@ This project is a **Falling Particle Simulation** built using **Java** and the *
 
 ### Features:
 - **Falling Particles**: Simulate the movement of particles influenced by gravity.
-- **Reaction Mechanic**: Inspired by chemistry, materials interact with each other in a reactive way when they come into contact. This adds an extra layer of realism to the simulation.
-- **Density**: Each material has a density value that affects how it falls and interacts with other materials. Denser materials fall faster, while lighter ones float or behave differently.
+- **Reaction Mechanic**: Inspired by chemistry, materials interact with each other in a reactive way when they come into contact.
 - **Fluids**: Fluid dynamics are implemented, allowing certain materials to flow and interact like liquids. These materials spread and settle in their surroundings based on their properties.
-- **Fire**: The simulation includes a fire mechanic where certain materials can ignite and burn when they come into contact with fire. The spread and behavior of fire are influenced by the density and flammability of surrounding materials.
+- **Fire**: The simulation includes a fire mechanic where certain materials can ignite and burn when they come into contact with fire.
 
 ### Reaction Mechanism:
 The core of the reaction mechanic involves a method that checks if two materials (a reactant and a particle) interact when they collide. If they do, a new material replaces the reactant, and the original particle is replaced by a new product.
