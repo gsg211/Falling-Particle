@@ -9,7 +9,7 @@ import Materials.Grid.MaterialGrid;
     Base class for the materials
 */
 
-public class Material extends PApplet{
+public abstract class Material extends PApplet{
 
     public int x,y;
     public MaterialTypes type;

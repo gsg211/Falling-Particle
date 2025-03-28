@@ -26,21 +26,30 @@ public class Powder extends Material {
             return;
         }
         //checks down-right neighbour
-        nb=grid.grid[this.x+1][this.y + 1];
-        Material nb2=grid.grid[this.x + 1][this.y];
-        if (this.x < grid.size - 1 && (nb.density < density && nb.state!= MaterialStates.SOLID)
-                && (nb2.density < density && nb2.state!= MaterialStates.SOLID)) {
-            this.swap(grid, grid.grid[this.x + 1][this.y + 1]);
-            return;
-        }
-        //checks down-left neighbour
-        nb=grid.grid[this.x - 1][this.y + 1];
-        nb2=grid.grid[this.x - 1][this.y];
+        if(this.x < grid.size - 1 ){
+            nb=grid.grid[this.x+1][this.y + 1];
+            Material nb2=grid.grid[this.x + 1][this.y];
+            if ( nb.density < density && nb.state!= MaterialStates.SOLID
+                    && (nb2.density < density && nb2.state!= MaterialStates.SOLID)) {
 
-        if (this.x > 0 && (nb.density < density && nb.state!= MaterialStates.SOLID)
-                && (nb2.density < density && nb2.state!= MaterialStates.SOLID)) {
-            this.swap(grid, grid.grid[this.x - 1][this.y + 1]);
+                this.swap(grid, grid.grid[this.x + 1][this.y + 1]);
+                return;
+            }
         }
+
+
+        //checks down-left neighbour
+
+        if(this.x >0){
+            nb=grid.grid[this.x - 1][this.y + 1];
+            Material nb2=grid.grid[this.x - 1][this.y];
+
+            if ( nb.density < density && nb.state!= MaterialStates.SOLID
+                    && (nb2.density < density && nb2.state!= MaterialStates.SOLID)) {
+                this.swap(grid, grid.grid[this.x - 1][this.y + 1]);
+            }
+        }
+
     }
 
     @Override
